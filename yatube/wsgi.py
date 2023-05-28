@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yatube.settings')
+
+if os.environ.get('PRODUCTION') == "True":
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yatube.production')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yatube.settings')
 
 application = get_wsgi_application()
